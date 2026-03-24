@@ -1,76 +1,146 @@
-# Linux System Monitoring Automation
+🖥️ Linux Monitoring & Alerting System
 
-<!-- Portfolio-ready README for automated Linux monitoring -->
+📌 Overview
 
-## Overview
+This project is a Bash-based monitoring and alerting system designed to track system health and notify when critical thresholds are exceeded.
 
-This project is a **modular, automated monitoring system** for Linux servers.  
-It monitors CPU, memory, disk usage, and critical services, logs all events, and can optionally be extended to send alerts.  
+It monitors:
 
-The project demonstrates **Linux system administration skills, process and resource monitoring, and automation** — perfect for portfolios and real-world server management.
+- CPU usage
+- Memory usage
+- Disk usage
+- System services
 
----
-
-## Features
-
-- Monitor CPU and memory usage with configurable thresholds
-- Monitor disk space for root partition
-- Monitor critical services and log their status
-- Modular design: easy to add more checks
-- Logging of all events with timestamps
-- Fully automated and ready for cron scheduling
+When any metric exceeds defined thresholds, an alert is triggered automatically.
 
 ---
 
-## Project Structure
+🚀 Features
 
-```text
-linux-monitoring/
-│
-├─ scripts/
-│  ├─ check_cpu_memory.sh        # Monitors CPU and RAM usage
-│  ├─ check_disk.sh              # Monitors disk space
-│  ├─ check_services.sh          # Monitors critical services
-│  └─ monitor_master.sh          # Runs all monitoring scripts in sequence
-│
-├─ configs/
-│  ├─ services.conf              # List of critical services to monitor
-│  ├─ thresholds.conf            # CPU, RAM, Disk usage thresholds
-│
-├─ logs/
-│  └─ monitoring.log             # Stores log of all events
-└─ README.md                     # Project documentation
+🔍 System Monitoring
 
+- Real-time CPU and memory tracking
+- Disk usage monitoring (root partition)
+- Service status monitoring using "systemctl"
+
+⚠️ Alert System
+
+- Threshold-based alert triggering
+- Automatic alert execution via "send_alert.sh"
+- Logs alerts and system activity
+
+🧾 Logging
+
+- Timestamped logs
+- Centralized log file ("monitoring.log")
+- Tracks both normal activity and alerts
+
+⚙️ Configurable System
+
+- Threshold values stored in config files
+- Services to monitor defined in a config file
+- Easy to customize without modifying scripts
 
 ---
 
-**Usage**
+📂 Project Structure
 
+monitoring-system/
+│
+├── scripts/
+│   ├── check_cpu_memory.sh
+│   ├── disk_status.sh
+│   ├── services_status.sh
+│   ├── monitor_all.sh
+│   └── send_alert.sh
+│
+├── configs/
+│   ├── thresholds.conf
+│   └── services.conf
+│
+├── logs/
+│   └── monitoring.log
+│
+└── README.md
 
-```bash
-git clone https://github.com/Ajima-Fabian/linux-resource-monitor.git
-cd linux-resource-monitor
+---
+
+⚙️ Configuration
+
+🔧 Thresholds
+
+Edit "configs/thresholds.conf":
+
+CPU_THRESHOLD=80
+MEMORY_THRESHOLD=75
+DISK_THRESHOLD=85
+
+---
+
+🔧 Services
+
+Edit "configs/services.conf":
+
+nginx
+docker
+ssh
+
+---
+
+▶️ Usage
+
+1. Make scripts executable
+
 chmod +x scripts/*.sh
 
+2. Run all monitoring checks
 
-Run the Master Script
-bash scripts/monitor_master.sh
-This will:
-Check CPU and memory usage
-Check disk usage
-Check critical services
-Log all events in logs/monitoring.log
+cd scripts
+./monitor_all.sh
 
+---
 
+📊 Example Output
 
-Notes
-Modular and easy to extend
-Works on RHEL, CentOS, Fedora, Ubuntu, and other Linux distributions
-Optional: you can later add alerts via email or Slack for real-time notifications
+[2026-03-24 10:00:00] [INFO] CPU Usage: 45%, Memory Usage: 60%
+[2026-03-24 10:00:01] [ALERT] CPU usage above threshold (80%)
+[2026-03-24 10:00:02] [INFO] Service nginx is running
+[2026-03-24 10:00:03] [ALERT] Service docker is stopped
 
+---
 
+🛠️ Technologies Used
 
-Author
-Ajima Fabian – Linux System Administrator / DevOps Enthusiast
-📧 Email: ajimafabian18@gmail.com
-💻 GitHub: https://github.com/Ajima-Fabian
+- Bash scripting
+- Linux system utilities ("top", "free", "df", "systemctl")
+- Process and service monitoring
+
+---
+
+🎯 Purpose
+
+This project demonstrates:
+
+- Automation of system monitoring tasks
+- Real-time alerting based on thresholds
+- Log management and system visibility
+- Practical DevOps scripting skills
+
+---
+
+🔮 Future Improvements
+
+- Email/Slack alert integration
+- Cron job automation
+- Docker container monitoring
+- Web dashboard for visualization
+
+---
+
+📌 Author
+
+Ajima Fabian
+DevOps & Linux Enthusiast focused on automation and system reliability
+
+- GitHub: https://github.com/Ajima-Fabian
+- Email: ajimafabian18@gmail.com

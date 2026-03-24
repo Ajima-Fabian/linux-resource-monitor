@@ -7,8 +7,7 @@
 This project is a **modular, automated monitoring system** for Linux servers.  
 It monitors CPU, memory, disk usage, and critical services, logs all events, and can optionally be extended to send alerts.  
 
-The project demonstrates **Linux system administration skills, process and resource monitoring, and automation**.
-
+The project demonstrates **Linux system administration skills, process and resource monitoring, and automation** — perfect for portfolios and real-world server management.
 
 ---
 
@@ -40,11 +39,38 @@ linux-monitoring/
 │
 ├─ logs/
 │  └─ monitoring.log             # Stores log of all events
-└─ README.md
+└─ README.md                     # Project documentation
 
 
 ---
 
+**Usage**
 
-## Project documentation
 
+```bash
+git clone https://github.com/Ajima-Fabian/linux-resource-monitor.git
+cd linux-resource-monitor
+chmod +x scripts/*.sh
+
+
+Run the Master Script
+bash scripts/monitor_master.sh
+This will:
+Check CPU and memory usage
+Check disk usage
+Check critical services
+Log all events in logs/monitoring.log
+
+
+
+Notes
+Modular and easy to extend
+Works on RHEL, CentOS, Fedora, Ubuntu, and other Linux distributions
+Optional: you can later add alerts via email or Slack for real-time notifications
+
+
+
+Author
+Ajima Fabian – Linux System Administrator / DevOps Enthusiast
+📧 Email: ajimafabian18@gmail.com
+💻 GitHub: https://github.com/Ajima-Fabian

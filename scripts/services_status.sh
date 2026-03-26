@@ -1,18 +1,27 @@
 #!/bin/bash
+# ============================================
+# Script: services_status.sh
+# Purpose: Monitor defined system services
+# Triggers alert if any service is inactive
+# ============================================
 
-LOG_FILE="../logs/monitoring.log"
-SERVICE_FILE="../configs/services.conf"
+# Load list of services to monitor
+source ../configs/services.conf
 
-log() {
-    echo -e "[$(date +'%F %T')] $1" | tee -a $LOG_FILE
-}
+# Load alert function
+source ./send_alert.sh
 
-# Loop through each service in the config
-while read -r SERVICE; do
-    if systemctl is-active --quiet $SERVICE; then
-        log "[INFO] Service $SERVICE is running"
+# ----- Loop through services -----
+while read -r service; do
+    # Check if service is active
+    systemctl is-active --quiet "$service"
+    
+    if [ $? -eq 0 ]; then
+        # Service is running
+        echo "[$(date '+%Y-%m-%d %H:%M:%S')] [INFO] Service $service is running" >> ../logs/monitoring.log
     else
-        log "[ALERT] Service $SERVICE is stopped"
-        bash send_alert.sh "Service alert" "$SERVICE is not running!"
+        # Service is stopped → trigger alert
+        echo "[$(date '+%Y-%m-%d %H:%M:%S')] [ALERT] Service $service is stopped" >> ../logs/monitoring.log
+        ./send_alert.sh "Service $service is stopped"
     fi
-done < $SERVICE_FILE
+done < ../configs/services.conf

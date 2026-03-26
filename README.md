@@ -79,7 +79,7 @@ DISK_THRESHOLD=85
 
 🔧 Services
 
-Edit "configs/services.conf":
+Edit "configs/services.conf" to list the services you want to monitor 
 
 nginx
 docker
@@ -103,8 +103,11 @@ cd scripts
 📊 Example Output
 
 [2026-03-24 10:00:00] [INFO] CPU Usage: 45%, Memory Usage: 60%
+
 [2026-03-24 10:00:01] [ALERT] CPU usage above threshold (80%)
+
 [2026-03-24 10:00:02] [INFO] Service nginx is running
+
 [2026-03-24 10:00:03] [ALERT] Service docker is stopped
 
 ---

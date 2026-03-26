@@ -1,8 +1,14 @@
 #!/bin/bash
+# ============================================
+# Script: monitor_all.sh
+# Purpose: Aggregator script to run all monitoring scripts sequentially
+# ============================================
 
-# Run all monitoring scripts
-bash check_cpu_memory.sh
-bash disk_status.sh
-bash services_status.sh
+# Run CPU and Memory check
+./check_cpu_memory.sh
 
-echo "Monitoring complete."
+# Run Disk usage check
+./disk_status.sh
+
+# Run Service status check
+./services_status.sh

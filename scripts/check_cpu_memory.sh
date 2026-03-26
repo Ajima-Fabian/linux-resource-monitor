@@ -1,32 +1,35 @@
 #!/bin/bash
+# ============================================
+# Script: check_cpu_memory.sh
+# Purpose: Monitor CPU and Memory usage
+# Triggers alerts if usage exceeds defined thresholds
+# ============================================
 
-# Load thresholds
+# Load thresholds from config file
 source ../configs/thresholds.conf
 
-# Log file
-LOG_FILE="../logs/monitoring.log"
+# Load alert function
+source ./send_alert.sh
 
-# Function to log messages
-log() {
-    echo -e "[$(date +'%F %T')] $1" | tee -a $LOG_FILE
-}
+# ----- CPU Usage -----
+# Get CPU idle percentage from 'top', subtract from 100 to get usage
+CPU_USAGE=$(top -bn1 | grep "Cpu(s)" | awk '{print 100 - $8}' | awk -F. '{print $1}')
 
-# Get CPU usage percentage
-CPU_USAGE=$(top -bn1 | grep "Cpu(s)" | awk '{print int($2 + $4)}')
+# ----- Memory Usage -----
+# Get used memory percentage
+MEMORY_USAGE=$(free | grep Mem | awk '{print $3/$2 * 100}' | awk -F. '{print $1}')
 
-# Get Memory usage percentage
-MEM_USAGE=$(free | awk '/Mem/ {print int($3/$2 * 100)}')
+# ----- Logging -----
+# Append CPU and Memory info to centralized log file
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] [INFO] CPU Usage: $CPU_USAGE%, Memory Usage: $MEMORY_USAGE%" >> ../logs/monitoring.log
 
-log "[INFO] CPU Usage: $CPU_USAGE%, Memory Usage: $MEM_USAGE%"
-
-# Check CPU
+# ----- Alerts -----
+# Compare CPU usage with threshold
 if [ "$CPU_USAGE" -gt "$CPU_THRESHOLD" ]; then
-    log "[ALERT] CPU usage above threshold ($CPU_THRESHOLD%)"
-    bash send_alert.sh "CPU usage alert" "CPU usage is at $CPU_USAGE%"
+    ./send_alert.sh "CPU usage above threshold ($CPU_THRESHOLD%)"
 fi
 
-# Check Memory
-if [ "$MEM_USAGE" -gt "$MEMORY_THRESHOLD" ]; then
-    log "[ALERT] Memory usage above threshold ($MEMORY_THRESHOLD%)"
-    bash send_alert.sh "Memory usage alert" "Memory usage is at $MEM_USAGE%"
+# Compare Memory usage with threshold
+if [ "$MEMORY_USAGE" -gt "$MEMORY_THRESHOLD" ]; then
+    ./send_alert.sh "Memory usage above threshold ($MEMORY_THRESHOLD%)"
 fi

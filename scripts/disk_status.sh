@@ -1,18 +1,26 @@
 #!/bin/bash
+# ============================================
+# Script: disk_status.sh
+# Purpose: Monitor disk usage of root partition
+# Triggers alert if usage exceeds threshold
+# ============================================
 
+# Load threshold configuration
 source ../configs/thresholds.conf
-LOG_FILE="../logs/monitoring.log"
 
-log() {
-    echo -e "[$(date +'%F %T')] $1" | tee -a $LOG_FILE
-}
+# Load alert function
+source ./send_alert.sh
 
-# Check disk usage for root partition
-DISK_USAGE=$(df / | tail -1 | awk '{print int($5)}')
+# ----- Disk Usage -----
+# 'df /' shows disk usage of root partition
+# tail -1 ignores header, awk prints 5th column (usage%)
+# sed removes '%' for numeric comparison
+DISK_USAGE=$(df / | tail -1 | awk '{print $5}' | sed 's/%//')
 
-log "[INFO] Disk Usage: $DISK_USAGE%"
+# ----- Logging -----
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] [INFO] Disk Usage: $DISK_USAGE%" >> ../logs/monitoring.log
 
+# ----- Alerts -----
 if [ "$DISK_USAGE" -gt "$DISK_THRESHOLD" ]; then
-    log "[ALERT] Disk usage above threshold ($DISK_THRESHOLD%)"
-    bash send_alert.sh "Disk usage alert" "Disk usage is at $DISK_USAGE%"
+    ./send_alert.sh "Disk usage above threshold ($DISK_THRESHOLD%)"
 fi

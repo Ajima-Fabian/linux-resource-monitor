@@ -1,4 +1,4 @@
-# 🖥️ Linux Monitoring & Alerting System
+# 🖥️  Monitoring & Alerting System
 
 ## 📌 Overview
 
@@ -69,7 +69,7 @@ monitoring-system/
 ## ⚙️ Configuration
 
 ### 🔧 Thresholds
-
+```bash
 Edit "configs/thresholds.conf":
 
 CPU_THRESHOLD=80
@@ -90,14 +90,14 @@ ssh
 
 ## ▶️ Usage
 
-### 1. Make scripts executable
-
-chmod +x scripts/*.sh
-
-### 2. Run all monitoring checks
-
-cd scripts
-./monitor_all.sh
+### 1. Clone Repository 
+git clone https://github.com/Ajima-Fabian/linux-resource-monitor.git
+### 2. Make Script Executable 
+cd linux-resource-monitor
+chmod +x scripts/*
+chmod +x monitor_master.sh
+### 3. Run Script
+./monitor_master.sh
 
 ---
 
@@ -110,7 +110,7 @@ cd scripts
 [2026-03-24 10:00:02] [INFO] Service nginx is running
 
 [2026-03-24 10:00:03] [ALERT] Service docker is stopped
-
+```
 ---
 
 ## 🛠️ Technologies Used

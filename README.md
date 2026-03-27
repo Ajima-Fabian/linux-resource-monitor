@@ -1,6 +1,6 @@
-🖥️ Linux Monitoring & Alerting System
+# 🖥️ Linux Monitoring & Alerting System
 
-📌 Overview
+## 📌 Overview
 
 This project is a Bash-based monitoring and alerting system designed to track system health and notify when critical thresholds are exceeded.
 
@@ -15,27 +15,27 @@ When any metric exceeds defined thresholds, an alert is triggered automatically.
 
 ---
 
-🚀 Features
+## 🚀 Features
 
-🔍 System Monitoring
+### 🔍 System Monitoring
 
 - Real-time CPU and memory tracking
 - Disk usage monitoring (root partition)
 - Service status monitoring using "systemctl"
 
-⚠️ Alert System
+### ⚠️ Alert System
 
 - Threshold-based alert triggering
 - Automatic alert execution via "send_alert.sh"
 - Logs alerts and system activity
 
-🧾 Logging
+### 🧾 Logging
 
 - Timestamped logs
 - Centralized log file ("monitoring.log")
 - Tracks both normal activity and alerts
 
-⚙️ Configurable System
+### ⚙️ Configurable System
 
 - Threshold values stored in config files
 - Services to monitor defined in a config file
@@ -43,8 +43,9 @@ When any metric exceeds defined thresholds, an alert is triggered automatically.
 
 ---
 
-📂 Project Structure
+## 📂 Project Structure
 
+```bash
 monitoring-system/
 │
 ├── scripts/
@@ -62,12 +63,12 @@ monitoring-system/
 │   └── monitoring.log
 │
 └── README.md
-
+```
 ---
 
-⚙️ Configuration
+## ⚙️ Configuration
 
-🔧 Thresholds
+### 🔧 Thresholds
 
 Edit "configs/thresholds.conf":
 
@@ -77,7 +78,7 @@ DISK_THRESHOLD=85
 
 ---
 
-🔧 Services
+### 🔧 Services
 
 Edit "configs/services.conf" to list the services you want to monitor 
 
@@ -87,20 +88,20 @@ ssh
 
 ---
 
-▶️ Usage
+## ▶️ Usage
 
-1. Make scripts executable
+### 1. Make scripts executable
 
 chmod +x scripts/*.sh
 
-2. Run all monitoring checks
+### 2. Run all monitoring checks
 
 cd scripts
 ./monitor_all.sh
 
 ---
 
-📊 Example Output
+## 📊 Example Output
 
 [2026-03-24 10:00:00] [INFO] CPU Usage: 45%, Memory Usage: 60%
 
@@ -112,7 +113,7 @@ cd scripts
 
 ---
 
-🛠️ Technologies Used
+## 🛠️ Technologies Used
 
 - Bash scripting
 - Linux system utilities ("top", "free", "df", "systemctl")
@@ -120,7 +121,7 @@ cd scripts
 
 ---
 
-🎯 Purpose
+## 🎯 Purpose
 
 This project demonstrates:
 
@@ -131,7 +132,7 @@ This project demonstrates:
 
 ---
 
-🔮 Future Improvements
+## 🔮 Future Improvements
 
 - Email/Slack alert integration
 - Cron job automation
@@ -140,7 +141,7 @@ This project demonstrates:
 
 ---
 
-📌 Author
+## 📌 Author
 
 Ajima Fabian
 DevOps & Linux Enthusiast focused on automation and system reliability

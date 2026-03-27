@@ -90,13 +90,18 @@ ssh
 
 ## ▶️ Usage
 
-### 1. Clone Repository 
+### 1. Clone Repository
+
 git clone https://github.com/Ajima-Fabian/linux-resource-monitor.git
-### 2. Make Script Executable 
+
+### 2. Make Script Executable
+
 cd linux-resource-monitor
 chmod +x scripts/*
 chmod +x monitor_master.sh
+
 ### 3. Run Script
+
 ./monitor_master.sh
 
 ---

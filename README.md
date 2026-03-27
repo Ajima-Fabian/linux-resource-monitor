@@ -52,7 +52,6 @@ monitoring-system/
 │   ├── check_cpu_memory.sh
 │   ├── disk_status.sh
 │   ├── services_status.sh
-│   ├── monitor_all.sh
 │   └── send_alert.sh
 │
 ├── configs/
@@ -60,7 +59,8 @@ monitoring-system/
 │   └── services.conf
 │
 ├── logs/
-│   └── monitoring.log
+│  └── monitoring.log
+├── monitor_master.sh
 │
 └── README.md
 ```

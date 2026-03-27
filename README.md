@@ -151,5 +151,5 @@ This project demonstrates:
 Ajima Fabian
 DevOps & Linux Enthusiast focused on automation and system reliability
 
-- GitHub: https://github.com/Ajima-Fabian
+- GitHub: https://github.com/Ajima-Fabian/Ajima-Fabian
 - Email: ajimafabian18@gmail.com

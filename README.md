@@ -69,41 +69,42 @@ monitoring-system/
 ## ⚙️ Configuration
 
 ### 🔧 Thresholds
-```bash
-Edit "configs/thresholds.conf":
 
+Edit "configs/thresholds.conf":
+```bash
 CPU_THRESHOLD=80
 MEMORY_THRESHOLD=75
 DISK_THRESHOLD=85
-
+```
 ---
 
 ### 🔧 Services
 
 Edit "configs/services.conf" to list the services you want to monitor 
-
+```bash
 nginx
 docker
 ssh
-
+```
 ---
 
 ## ▶️ Usage
 
 ### 1. Clone Repository
-
+```bash
 git clone https://github.com/Ajima-Fabian/linux-resource-monitor.git
-
+```
 ### 2. Make Script Executable
-
+```bash
 cd linux-resource-monitor
 chmod +x scripts/*
 chmod +x monitor_master.sh
+```
 
 ### 3. Run Script
-
+```bash
 ./monitor_master.sh
-
+```
 ---
 
 ## 📊 Example Output
@@ -115,7 +116,7 @@ chmod +x monitor_master.sh
 [2026-03-24 10:00:02] [INFO] Service nginx is running
 
 [2026-03-24 10:00:03] [ALERT] Service docker is stopped
-```
+
 ---
 
 ## 🛠️ Technologies Used
